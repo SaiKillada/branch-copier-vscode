@@ -2,9 +2,10 @@
   "name": "branch-copier",
   "displayName": "Branch Copier",
   "description": "Adds a status bar button to copy the current Git branch name to the clipboard",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "SaiPrasadKillada69",
   "license": "MIT",
+  "icon": "copier-icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/SaiKillada/branch-copier-vscode.git"
