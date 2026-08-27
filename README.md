@@ -1,7 +1,8 @@
 # Branch Copier
 
-Adds a status bar button (bottom-left) showing the current Git branch with a
-copy icon. Click it to copy the branch name to the clipboard.
+Adds a copy-icon button to the status bar (bottom-left), next to VS Code's
+built-in Git branch indicator. Click it to copy the current branch name to
+the clipboard.
 
 ## Development
 

@@ -16,11 +16,6 @@ interface GitAPI {
 const COPY_COMMAND_ID = 'branchCopier.copyBranchName';
 
 export function activate(context: vscode.ExtensionContext): void {
-  const branchItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-  branchItem.command = 'git.checkout';
-  branchItem.tooltip = 'Switch or create branch';
-  context.subscriptions.push(branchItem);
-
   const copyItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 99);
   copyItem.text = '$(copy)';
   copyItem.command = COPY_COMMAND_ID;
@@ -30,12 +25,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
   const render = () => {
     if (currentBranch) {
-      branchItem.text = `$(git-branch) ${currentBranch}`;
-      branchItem.show();
       copyItem.tooltip = `Copy branch name "${currentBranch}" to clipboard`;
       copyItem.show();
     } else {
-      branchItem.hide();
       copyItem.hide();
     }
   };

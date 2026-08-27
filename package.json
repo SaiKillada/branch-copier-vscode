@@ -2,7 +2,7 @@
   "name": "branch-copier",
   "displayName": "Branch Copier",
   "description": "Adds a status bar button to copy the current Git branch name to the clipboard",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "SaiPrasadKillada69",
   "license": "MIT",
   "icon": "copier-icon.png",
