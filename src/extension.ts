@@ -13,27 +13,35 @@ interface GitAPI {
   onDidOpenRepository: vscode.Event<GitRepository>;
 }
 
-const COMMAND_ID = 'branchCopier.copyBranchName';
+const COPY_COMMAND_ID = 'branchCopier.copyBranchName';
 
 export function activate(context: vscode.ExtensionContext): void {
-  const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-  statusBarItem.command = COMMAND_ID;
-  context.subscriptions.push(statusBarItem);
+  const branchItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  branchItem.command = 'git.checkout';
+  branchItem.tooltip = 'Switch or create branch';
+  context.subscriptions.push(branchItem);
+
+  const copyItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 99);
+  copyItem.text = '$(copy)';
+  copyItem.command = COPY_COMMAND_ID;
+  context.subscriptions.push(copyItem);
 
   let currentBranch: string | undefined;
 
   const render = () => {
     if (currentBranch) {
-      statusBarItem.text = `$(copy) ${currentBranch}`;
-      statusBarItem.tooltip = `Copy branch name "${currentBranch}" to clipboard`;
-      statusBarItem.show();
+      branchItem.text = `$(git-branch) ${currentBranch}`;
+      branchItem.show();
+      copyItem.tooltip = `Copy branch name "${currentBranch}" to clipboard`;
+      copyItem.show();
     } else {
-      statusBarItem.hide();
+      branchItem.hide();
+      copyItem.hide();
     }
   };
 
   context.subscriptions.push(
-    vscode.commands.registerCommand(COMMAND_ID, async () => {
+    vscode.commands.registerCommand(COPY_COMMAND_ID, async () => {
       if (!currentBranch) {
         return;
       }
